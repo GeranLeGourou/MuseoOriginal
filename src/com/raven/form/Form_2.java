@@ -37,7 +37,7 @@ public class Form_2 extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Brush Script MT", 0, 64)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Gestion des oeuvres");
+        jLabel1.setText("Gestion des Geran");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
