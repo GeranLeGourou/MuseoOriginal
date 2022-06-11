@@ -48,7 +48,7 @@ public class Header extends javax.swing.JPanel {
         });
 
         exit.setBackground(new java.awt.Color(255, 51, 51));
-        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/close.png"))); // NOI18N
+        exit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/raven/icon/fermer.png"))); // NOI18N
         exit.setEffectColor(new java.awt.Color(255, 120, 81));
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
