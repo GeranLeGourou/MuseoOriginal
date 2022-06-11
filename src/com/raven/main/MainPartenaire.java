@@ -8,7 +8,7 @@ import com.raven.event.EventMenuSelected;
 import com.raven.form.Form_1;
 import com.raven.form.Form_2;
 import com.raven.form.Form_3;
-import com.raven.form.Form_Home;
+import com.raven.form.Form_Accueil;
 import com.raven.login.Login;
 import java.awt.Color;
 import javax.swing.JComponent;
@@ -25,14 +25,14 @@ public class MainPartenaire extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    private Form_Home home;
+    private Form_Accueil home;
     private Form_1 form1;
     private Form_2 form2;
     private Form_3 form3;
     public MainPartenaire() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-        home = new Form_Home();
+        home = new Form_Accueil();
         form1 = new Form_1();
         form2 = new Form_2();
         form3 = new Form_3();
@@ -47,17 +47,16 @@ public class MainPartenaire extends javax.swing.JFrame {
                 } else if (index == 2) {
                     setForm(form2);
                 } else if (index == 3) {
-                    setForm(form3);
-                } else if (index == 4) {
                     setVisible(false);
                     Login obj = new Login();
                     obj.setVisible(true);
+                    
                 }
             }
         });
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
         // set when system open start with home form
-        setForm(new Form_Home());
+        setForm(new Form_Accueil());
         
     }
     
