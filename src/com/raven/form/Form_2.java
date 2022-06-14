@@ -6,10 +6,17 @@
 package com.raven.form;
 
 import com.raven.main.Main;
+import com.raven.main.AddOeuvre;
 import com.raven.dialog.Message;
 import com.raven.model.Model_Oeuvre;
+import com.raven.form.Form_addOeuvre;
 import com.raven.swing.table.EventActionOeuvre;
+import java.awt.Toolkit;
+import java.awt.event.WindowEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,10 +27,14 @@ public class Form_2 extends javax.swing.JPanel {
     /**
      * Creates new form Form_1
      */
+    private Form_addOeuvre formAddOeuvre;
+    boolean fenetre = false;
+    private Form_1 form1;
     public Form_2() {
         initComponents();
         tableOeuvre1.fixTable(jScrollPane1);
         initTableData();
+        formAddOeuvre = new Form_addOeuvre();
     }
     
     private void initTableData() {
@@ -62,6 +73,8 @@ public class Form_2 extends javax.swing.JPanel {
         Message obj= new Message(Main.getFrames()[0], true);
         obj.showMessage(message);
     }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -72,13 +85,13 @@ public class Form_2 extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableOeuvre1 = new com.raven.swing.table.TableOeuvre();
         jLabel2 = new javax.swing.JLabel();
-        button1 = new com.raven.swing.Button();
         jComboBox1 = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         textFieldAnimation1 = new com.raven.swing.TextFieldAnimation();
 
         setBackground(new java.awt.Color(242, 242, 242));
+        setName(""); // NOI18N
 
         jPanel1.setBackground(new java.awt.Color(117, 202, 240));
 
@@ -158,11 +171,6 @@ public class Form_2 extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        button1.setBackground(new java.awt.Color(37, 157, 209));
-        button1.setForeground(new java.awt.Color(255, 255, 255));
-        button1.setText("Ajouter un oeuvre");
-        button1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Titre", "titre 1", "titre 2", " " }));
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Artiste", "Pablo Picasso", "Francis Zhao", " " }));
@@ -185,9 +193,7 @@ public class Form_2 extends javax.swing.JPanel {
                         .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(35, 35, 35)
                         .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32))
+                        .addGap(175, 175, 175))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(20, 20, 20))))
@@ -200,7 +206,6 @@ public class Form_2 extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -214,9 +219,8 @@ public class Form_2 extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.swing.Button button1;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;

@@ -4,17 +4,26 @@
  * and open the template in the editor.
  */
 package com.raven.main;
+
+import com.raven.main.AddOeuvre;
+import com.raven.main.AddAdmin;
+import com.raven.main.MainOeuvres;
 import com.raven.event.EventMenuSelected;
-import com.raven.form.Form_1;
+import com.raven.form.Form_Oeuvres;
 import com.raven.form.Form_2;
 import com.raven.form.Form_3;
 import com.raven.form.Form_Home;
 import com.raven.login.Login;
+import com.raven.model.Model_Item;
 import java.awt.Color;
 import javax.swing.JComponent;
 import com.raven.swing.ScrollBar;
 import com.raven.swing.icon.GoogleMaterialDesignIcons;
 import com.raven.swing.icon.IconFontSwing;
+import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -26,16 +35,20 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     private Form_Home home;
-    private Form_1 form1;
+    private MainOeuvres oeuvres;
     private Form_2 form2;
     private Form_3 form3;
+    private AddOeuvre addOeuvre;
+    private AddAdmin addAdmin;
     public Main() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         home = new Form_Home();
-        form1 = new Form_1();
+        oeuvres = new MainOeuvres();
         form2 = new Form_2();
         form3 = new Form_3();
+        addOeuvre = new AddOeuvre();
+        addAdmin = new AddAdmin();
         menu.initMoving(Main.this);
         menu.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -43,15 +56,27 @@ public class Main extends javax.swing.JFrame {
                 if (index == 0) {
                     setForm(home);
                 } else if (index == 1) {
-                    setForm(form1);
+                    dispose();
+                    oeuvres.setVisible(true);
                 } else if (index == 2) {
                     setForm(form2);
                 } else if (index == 3) {
-                    setForm(form3);
+                    dispose();
+                    addOeuvre.setVisible(true);
                 } else if (index == 4) {
-                    setVisible(false);
-                    Login obj = new Login();
-                    obj.setVisible(true);
+                    setForm(form3);
+                 } else if (index == 5) {
+                    dispose();
+                    addAdmin.setVisible(true);   
+                } else if (index == 6) {
+                    JFrame frame = new JFrame("Deconnexion");
+                    if (JOptionPane.showConfirmDialog(frame, "Êtes-vous sûr de vouloir vous déconnecter ?.", "Déconnecter",
+                            JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
+                    {
+                        setVisible(false);
+                        Login obj = new Login();
+                        obj.setVisible(true);
+                    }   
                 }
             }
         });
@@ -84,6 +109,7 @@ public class Main extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1230, 658));
 
         panelBorder1.setBackground(new java.awt.Color(242, 242, 242));
 
@@ -97,12 +123,12 @@ public class Main extends javax.swing.JFrame {
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(menu, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 1003, Short.MAX_VALUE)
+                    .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, 662, Short.MAX_VALUE)
+            .addComponent(menu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(panelBorder1Layout.createSequentialGroup()
                 .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)

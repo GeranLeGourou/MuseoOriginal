@@ -5,18 +5,39 @@
  */
 package com.raven.form;
 
+import com.raven.form.Form_Oeuvres;
+import com.raven.model.Model_Item;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author franc
  */
-public class Form_1 extends javax.swing.JPanel {
 
+
+
+public class Form_1 extends javax.swing.JPanel {
+    
+    private Form_Oeuvres oeuvres;
     /**
      * Creates new form Form_1
      */
     public Form_1() {
         initComponents();
+        setBackground(new Color(0, 0, 0, 0));
+        
     }
+    
+    public void init() {
+        oeuvres = new Form_Oeuvres();
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.add(oeuvres);
+    }
+    
+  
+            
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,6 +50,8 @@ public class Form_1 extends javax.swing.JPanel {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        mainPanel = new com.raven.swing.MainPanel();
+        form_Oeuvres1 = new com.raven.form.Form_Oeuvres();
 
         setBackground(new java.awt.Color(242, 242, 242));
 
@@ -43,7 +66,7 @@ public class Form_1 extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 925, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 949, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -53,23 +76,40 @@ public class Form_1 extends javax.swing.JPanel {
                 .addGap(20, 20, 20))
         );
 
+        mainPanel.setOpaque(true);
+
+        javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
+        mainPanel.setLayout(mainPanelLayout);
+        mainPanelLayout.setHorizontalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(form_Oeuvres1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        mainPanelLayout.setVerticalGroup(
+            mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(form_Oeuvres1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 588, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.raven.form.Form_Oeuvres form_Oeuvres1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private com.raven.swing.MainPanel mainPanel;
     // End of variables declaration//GEN-END:variables
 }

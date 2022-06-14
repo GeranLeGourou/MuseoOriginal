@@ -21,7 +21,7 @@ import javax.swing.JFrame;
  *
  * @author franc
  */
-public class Menu extends javax.swing.JPanel {
+public class MenuAddOeuvre extends javax.swing.JPanel {
 
     /**
      * Creates new form Menu
@@ -33,20 +33,14 @@ public class Menu extends javax.swing.JPanel {
         listMenu1.addEventMenuSelected(event);
     }
     
-    public Menu() {
+    public MenuAddOeuvre() {
         initComponents();
         setOpaque(false);
         listMenu1.setOpaque(false);
         init();
     }
     private void init(){
-        listMenu1.addItem(new Model_Menu("11", "Accueil", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("12", "Liste des oeuvres", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("13", "Gestion des oeuvres", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("13", "Ajouter un oeuvre", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("14", "Gestion admin", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("16", "Ajouter un admin", Model_Menu.MenuType.MENU));
-        listMenu1.addItem(new Model_Menu("15", "Se déconnecter", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
 
     }

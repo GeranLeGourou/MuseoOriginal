@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package com.raven.main;
+
+import com.raven.main.MainOeuvresClient;
 import com.raven.event.EventMenuSelected;
 import com.raven.form.Form_1;
 import com.raven.form.Form_2;
@@ -15,6 +17,8 @@ import javax.swing.JComponent;
 import com.raven.swing.ScrollBar;
 import com.raven.swing.icon.GoogleMaterialDesignIcons;
 import com.raven.swing.icon.IconFontSwing;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,13 +33,16 @@ public class MainClient extends javax.swing.JFrame {
     private Form_1 form1;
     private Form_2 form2;
     private Form_3 form3;
+    private MainOeuvresClient oeuvres;
     public MainClient() {
+        this.dispose();
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         home = new Form_Accueil();
         form1 = new Form_1();
         form2 = new Form_2();
         form3 = new Form_3();
+        oeuvres = new MainOeuvresClient();
         menuClient1.initMoving(MainClient.this);
         menuClient1.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -43,11 +50,17 @@ public class MainClient extends javax.swing.JFrame {
                 if (index == 0) {
                     setForm(home);
                 } else if (index == 1) {
-                    setForm(form1);
+                    dispose();
+                    oeuvres.setVisible(true);
                 } else if (index == 2) {
-                    setVisible(false);
-                    Login obj = new Login();
-                    obj.setVisible(true);
+                    JFrame frame = new JFrame("Deconnexion");
+                    if (JOptionPane.showConfirmDialog(frame, "Êtes-vous sûr de vouloir vous déconnecter ?.", "Déconnecter",
+                            JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
+                    {
+                        setVisible(false);
+                        Login obj = new Login();
+                        obj.setVisible(true);
+                    }   
                 }
             }
         });

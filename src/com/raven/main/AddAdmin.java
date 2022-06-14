@@ -4,67 +4,43 @@
  * and open the template in the editor.
  */
 package com.raven.main;
+
+import com.raven.main.Main;
 import com.raven.event.EventMenuSelected;
-import com.raven.main.MainOeuvresPartenaire;
+import com.raven.form.Form_1;
 import com.raven.form.Form_2;
 import com.raven.form.Form_3;
-import com.raven.form.Form_Accueil;
+import com.raven.form.Form_addAdmin;
 import com.raven.login.Login;
 import java.awt.Color;
 import javax.swing.JComponent;
 import com.raven.swing.ScrollBar;
 import com.raven.swing.icon.GoogleMaterialDesignIcons;
 import com.raven.swing.icon.IconFontSwing;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author franc
  */
-public class MainPartenaire extends javax.swing.JFrame {
+public class AddAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form Main
      */
-    private Form_Accueil home;
-    private MainOeuvresPartenaire oeuvres;
+    private Form_addAdmin home;
+    private Form_1 form1;
     private Form_2 form2;
     private Form_3 form3;
-    public MainPartenaire() {
+    public AddAdmin() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
-        home = new Form_Accueil();
-        oeuvres = new MainOeuvresPartenaire();
+        home = new Form_addAdmin();
+        form1 = new Form_1();
         form2 = new Form_2();
         form3 = new Form_3();
-        menuPartenaire1.initMoving(MainPartenaire.this);
-        menuPartenaire1.addEventMenuSelected(new EventMenuSelected() {
-            @Override
-            public void selected(int index) {
-                if (index == 0) {
-                    setForm(home);
-                } else if (index == 1) {
-                    dispose();
-                    oeuvres.setVisible(true);
-                } else if (index == 2) {
-                    setForm(form2);
-                } else if (index == 3) {
-                    JFrame frame = new JFrame("Deconnexion");
-                    if (JOptionPane.showConfirmDialog(frame, "Êtes-vous sûr de vouloir vous déconnecter ?.", "Déconnecter",
-                            JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)
-                    {
-                        setVisible(false);
-                        Login obj = new Login();
-                        obj.setVisible(true);
-                    }   
-                    
-                }
-            }
-        });
         IconFontSwing.register(GoogleMaterialDesignIcons.getIconFont());
         // set when system open start with home form
-        setForm(new Form_Accueil());
+        setForm(new Form_addAdmin());
         
     }
     
@@ -85,9 +61,8 @@ public class MainPartenaire extends javax.swing.JFrame {
     private void initComponents() {
 
         panelBorder1 = new com.raven.swing.PanelBorder();
-        header2 = new com.raven.component.Header();
         mainPanel = new javax.swing.JPanel();
-        menuPartenaire1 = new com.raven.component.MenuPartenaire();
+        button1 = new com.raven.swing.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -97,31 +72,40 @@ public class MainPartenaire extends javax.swing.JFrame {
         mainPanel.setOpaque(false);
         mainPanel.setLayout(new java.awt.BorderLayout());
 
+        button1.setBackground(new java.awt.Color(117, 202, 240));
+        button1.setForeground(new java.awt.Color(255, 255, 255));
+        button1.setText("Retour");
+        button1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        button1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBorder1Layout = new javax.swing.GroupLayout(panelBorder1);
         panelBorder1.setLayout(panelBorder1Layout);
         panelBorder1Layout.setHorizontalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(menuPartenaire1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addGroup(panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(header2, javax.swing.GroupLayout.DEFAULT_SIZE, 994, Short.MAX_VALUE)
-                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBorder1Layout.createSequentialGroup()
+                .addContainerGap(849, Short.MAX_VALUE)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26))
+            .addComponent(mainPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelBorder1Layout.setVerticalGroup(
             panelBorder1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBorder1Layout.createSequentialGroup()
-                .addComponent(header2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, 617, Short.MAX_VALUE))
-            .addComponent(menuPartenaire1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(mainPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(button1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(panelBorder1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(panelBorder1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,6 +115,12 @@ public class MainPartenaire extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void button1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1ActionPerformed
+        dispose();
+        Main obj = new Main();
+        obj.setVisible(true);        // TODO add your handling code here:
+    }//GEN-LAST:event_button1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,13 +139,13 @@ public class MainPartenaire extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainPartenaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainPartenaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainPartenaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainPartenaire.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(AddAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -165,15 +155,14 @@ public class MainPartenaire extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainPartenaire().setVisible(true);
+                new AddAdmin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.raven.component.Header header2;
+    private com.raven.swing.Button button1;
     private javax.swing.JPanel mainPanel;
-    private com.raven.component.MenuPartenaire menuPartenaire1;
     private com.raven.swing.PanelBorder panelBorder1;
     // End of variables declaration//GEN-END:variables
 }

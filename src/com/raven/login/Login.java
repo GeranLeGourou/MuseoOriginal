@@ -42,6 +42,7 @@ public class Login extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         button_11 = new com.raven.swing.Button_1();
         exit = new com.raven.swing.Button_1();
+        button_12 = new com.raven.swing.Button_1();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -100,6 +101,16 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        button_12.setBackground(new java.awt.Color(117, 202, 240));
+        button_12.setForeground(new java.awt.Color(255, 255, 255));
+        button_12.setText("Je suis visiteur");
+        button_12.setEffectColor(new java.awt.Color(117, 202, 240));
+        button_12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -110,7 +121,8 @@ public class Login extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(password, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(button_11, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
+                    .addComponent(button_11, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                    .addComponent(button_12, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE))
                 .addContainerGap(75, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -128,9 +140,11 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(password, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addGap(18, 18, 18)
                 .addComponent(button_11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(button_12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 0, 400, 421));
@@ -146,12 +160,6 @@ public class Login extends javax.swing.JFrame {
         if (id.equals("admin@gmail.com") && pass.equals("admin")) {
             JOptionPane.showMessageDialog(null, "Connexion réussie, vous allez être redirigé en tant que Administrateur.");
             Main obj = new Main();
-            obj.setVisible(true);
-            setVisible(false);
-            
-        } else if (id.equals("client@gmail.com") && pass.equals("client")) {
-            JOptionPane.showMessageDialog(null, "Connexion réussie, vous allez être redirigé en tant que Client.");
-            MainClient obj = new MainClient();
             obj.setVisible(true);
             setVisible(false);
             
@@ -174,6 +182,13 @@ public class Login extends javax.swing.JFrame {
             System.exit(0);
         }
     }//GEN-LAST:event_exitActionPerformed
+
+    private void button_12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_12ActionPerformed
+        JOptionPane.showMessageDialog(null, "Vous allez être redirigé en tant que visiteur.");
+            MainClient obj = new MainClient();
+            obj.setVisible(true);
+            setVisible(false);        // TODO add your handling code here:
+    }//GEN-LAST:event_button_12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -212,6 +227,7 @@ public class Login extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.swing.Button_1 button_11;
+    private com.raven.swing.Button_1 button_12;
     private com.raven.swing.TextField email;
     private com.raven.swing.Button_1 exit;
     private javax.swing.JLabel jLabel1;
