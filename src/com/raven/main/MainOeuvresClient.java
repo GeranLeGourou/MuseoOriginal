@@ -5,6 +5,8 @@
  */
 package com.raven.main;
 
+import com.raven.back.Oeuvre;
+import com.raven.back.databaseRequests;
 import com.raven.event.EventItem;
 import com.raven.form.Form_2;
 import com.raven.form.Form_3;
@@ -14,6 +16,8 @@ import com.raven.model.Model_Item;
 import java.awt.Color;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -52,12 +56,9 @@ public class MainOeuvresClient extends javax.swing.JFrame {
             }
         });
         int id = 1;
-        for (int i =0; i<=5; i++){
-        oeuvres.addItem(new Model_Item(id++, "Figurine", "Pablo Picasso", "Une figurine", "bibliographie", "1180", new ImageIcon(getClass().getResource("/com/raven/icon/figurine1.jpg"))));
-        oeuvres.addItem(new Model_Item(id++, "Bijoux scarabée", "Geran Cocagne", "Un bijoux très précieux", "bibliographie", "1180", new ImageIcon(getClass().getResource("/com/raven/icon/bijoux1.jpg"))));
-        oeuvres.addItem(new Model_Item(id++, "Sculpture", "Jean pierre", "Une sculpture blanche", "bibliographie", "1588", new ImageIcon(getClass().getResource("/com/raven/icon/sculpture.jpg"))));
-        oeuvres.addItem(new Model_Item(id++, "Figurine", "Pablo Picasso", "Une figurine", "bibliographie", "1180", new ImageIcon(getClass().getResource("/com/raven/icon/figurine2.jpg"))));
-        oeuvres.addItem(new Model_Item(id++, "Naturel", "Pablo Picasso", "Une peinture liée à la nature", "bibliographie", "1955", new ImageIcon(getClass().getResource("/com/raven/icon/peinture1.jpg"))));
+        ArrayList<Oeuvre> listOeuvre = databaseRequests.getAllOeuvres();
+        for (Oeuvre oeuvre : listOeuvre) {
+        	oeuvres.addItem(new Model_Item(id++, oeuvre.getNom(), oeuvre.getArtiste(), oeuvre.getDescription(), oeuvre.getBibliographie(), oeuvre.getStatut(), new ImageIcon(getClass().getResource(oeuvre.getLien()))));
         }
     }
 
