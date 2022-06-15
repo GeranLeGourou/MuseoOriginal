@@ -10,6 +10,7 @@ import com.raven.main.MainClient;
 import com.raven.main.MainPartenaire;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import com.raven.back.databaseRequests;
 
 
 /**
@@ -156,20 +157,21 @@ public class Login extends javax.swing.JFrame {
     private void button_11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_11ActionPerformed
         String id = email.getText();
         String pass = password.getText();
-        
-        if (id.equals("admin@gmail.com") && pass.equals("admin")) {
-            JOptionPane.showMessageDialog(null, "Connexion rÃ©ussie, vous allez Ãªtre redirigÃ© en tant que Administrateur.");
+        boolean check = databaseRequests.checkLogin(id, pass);
+        boolean isAdmin = databaseRequests.checkAdmin(id);
+        if (check && isAdmin == true) {
+            JOptionPane.showMessageDialog(null, "Connexion réussie, vous allez être redirigé en tant que Administrateur.");
             Main obj = new Main();
             obj.setVisible(true);
             setVisible(false);
             
-        } else if (id.equals("partenaire@gmail.com") && pass.equals("partenaire")) {
-            JOptionPane.showMessageDialog(null, "Connexion rÃ©ussie, vous allez Ãªtre redirigÃ© en tant que Partenaire.");
+        } else if (check && isAdmin == false) {
+            JOptionPane.showMessageDialog(null, "Connexion réussie, vous allez être redirigé en tant que Partenaire.");
             MainPartenaire obj = new MainPartenaire();
             obj.setVisible(true);
             setVisible(false);
         } else {
-            JOptionPane.showMessageDialog(null, "Connexion Ã©chouÃ©e");
+            JOptionPane.showMessageDialog(null, "Mot de passe ou mail incorrect !");
         }
     }//GEN-LAST:event_button_11ActionPerformed
 
