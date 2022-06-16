@@ -2,7 +2,9 @@ package com.raven.back;
 
 import java.sql.*;
 
-public class databaseRequests {
+import javax.swing.JLabel;
+
+public class databaseRequests extends javax.swing.JPanel {
 	public static boolean checkLogin(String username, String password) {
 
 		try {
@@ -48,5 +50,37 @@ public class databaseRequests {
 			e.printStackTrace();
 		}
 		return false;
+	}
+	public static void addAdmin (String P, String N, String E, String T, String Passwd )  {
+		try {
+			
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+		Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+		String Prenom = P.toString();
+		String Nom = N.toString();
+		String Email = E.toString();
+		String Telephone = T.toString();
+		String Password = Passwd;
+		
+		
+		String query = "INSERT INTO utilisateur VALUES (NULL, ?, ?, ?, ?, ?, ?, ?  ) "; 
+		PreparedStatement pstmt = con.prepareStatement(query);
+
+		pstmt.setString(1, Nom );
+		pstmt.setString(2, Prenom);
+		pstmt.setString(3, Email);
+		pstmt.setString(4, Telephone);
+		pstmt.setString(5, Password);
+		pstmt.setInt(6, 1);
+		pstmt.setString(7, "Museo Lyon");
+		int rs = pstmt.executeUpdate();
+
+		
+			}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return;
 	}
 }

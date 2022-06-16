@@ -26,12 +26,14 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import com.raven.back.databaseRequests;
 
+
 /**
  *
  * @author franc
  */
 public class Main extends javax.swing.JFrame {
 
+	
     /**
      * Creates new form Main
      */
@@ -42,6 +44,8 @@ public class Main extends javax.swing.JFrame {
     private AddOeuvre addOeuvre;
     private AddAdmin addAdmin;
     public Main() {
+    	System.out.println("AAAAAAAAAAAAAAAA");
+
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
         home = new Form_Home();

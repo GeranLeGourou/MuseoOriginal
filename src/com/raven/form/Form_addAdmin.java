@@ -3,8 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.raven.form;
 
+
+package com.raven.form;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import com.raven.back.databaseRequests;
 
 /**
  *
@@ -83,7 +88,14 @@ public class Form_addAdmin extends javax.swing.JPanel {
         button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setText("Valider");
         button1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-
+        button1.addActionListener((ActionListener) new ActionListener() {
+        	 public void actionPerformed(ActionEvent e)
+        	  {
+        		 
+        		 databaseRequests.addAdmin(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(),  "mooootdepasse" ) ;
+        	  }
+        	});
+        
         button2.setBackground(new java.awt.Color(255, 120, 81));
         button2.setForeground(new java.awt.Color(255, 255, 255));
         button2.setText("Annuler");
