@@ -1,4 +1,6 @@
 package com.raven.back;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -54,6 +56,52 @@ public class databaseRequests extends javax.swing.JPanel {
 		return false;
 	}
 
+	public static boolean userExist(String Mail) {
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+			
+			String query = "SELECT prenom FROM utilisateur WHERE prenom = ?"; 
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, Mail );
+			
+			final ResultSet rs = pstmt.executeQuery();
+			System.out.print("AAAAAAAAAAAA");
+			while (rs.next()) {
+				if (rs.getString("mail").equals(Mail)) {
+					return true;
+				} else {
+					System.out.print("Compte inexistant");
+					return false;
+					
+				}
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			
+		} return false;
+	}
+	
+	public static String cryptage(String mdp) {
+		String mdpcrypt = "";
+        char[] chars = mdp.toCharArray();
+        for(char c : chars) {
+            c += 5;
+            mdpcrypt = mdpcrypt + c;
+            System.out.print(mdpcrypt);
+        }
+        return mdpcrypt;
+    }
+	
+	public static boolean checkPhone(String tel) {
+        String regex = "^(?:(?:\\+|00)33[\\s.-]{0,3}(?:\\(0\\)[\\s.-]{0,3})?|0)[1-9](?:(?:[\\s.-]?\\d{2}){4}|\\d{2}(?:[\\s.-]?\\d{3}){2})$";
+          Pattern pattern = Pattern.compile(regex);
+          Matcher matcher = pattern.matcher(tel);
+          return matcher.matches();
+    }
+	
 	public static void addAdmin (String P, String N, String E, String T, String Passwd )  {
 		try {
 			
@@ -64,8 +112,13 @@ public class databaseRequests extends javax.swing.JPanel {
 		String Nom = N.toString();
 		String Email = E.toString();
 		String Telephone = T.toString();
-		String Password = Passwd;
+		String Password = cryptage(Passwd);
 		
+		System.out.println(Passwd);
+		System.out.println(Password);
+		
+		String regex = "^(.+)@(.+)$";
+
 		
 		String query = "INSERT INTO utilisateur VALUES (NULL, ?, ?, ?, ?, ?, ?, ?  ) "; 
 		PreparedStatement pstmt = con.prepareStatement(query);
@@ -77,7 +130,19 @@ public class databaseRequests extends javax.swing.JPanel {
 		pstmt.setString(5, Password);
 		pstmt.setInt(6, 1);
 		pstmt.setString(7, "Museo Lyon");
-		int rs = pstmt.executeUpdate();
+		
+		if (userExist(Email) == false && Email.matches(regex) == true ) {
+			System.out.println("teeest");
+			if (checkPhone(Telephone) == true){
+				int rs = pstmt.executeUpdate();
+			}
+			else {
+				System.out.println("dddddzzzz");
+			}
+		}
+		else {
+			System.out.println("aaaaaaa");
+		}
 
 		
 			}
@@ -125,6 +190,29 @@ public class databaseRequests extends javax.swing.JPanel {
 			e.printStackTrace();
 		}
 		return;
+	}
+	
+	public static boolean checkAdminExist(String username) {
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+			String query = "SELECT admin FROM utilisateur WHERE mail = ?";
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, username);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				if (rs.getInt("admin") == 1) {
+					return true;
+				} else {
+					System.out.print("pas Admin");
+					return false;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 	
 	
