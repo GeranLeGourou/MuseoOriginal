@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.raven.main;
+import com.raven.main.DepositRequest;
 import com.raven.event.EventMenuSelected;
 import com.raven.main.MainOeuvresPartenaire;
 import com.raven.form.Form_2;
@@ -31,6 +32,7 @@ public class MainPartenaire extends javax.swing.JFrame {
     private MainOeuvresPartenaire oeuvres;
     private Form_2 form2;
     private Form_3 form3;
+    private DepositRequest deposit;
     public MainPartenaire() {
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
@@ -38,6 +40,7 @@ public class MainPartenaire extends javax.swing.JFrame {
         oeuvres = new MainOeuvresPartenaire();
         form2 = new Form_2();
         form3 = new Form_3();
+        deposit = new DepositRequest();
         menuPartenaire1.initMoving(MainPartenaire.this);
         menuPartenaire1.addEventMenuSelected(new EventMenuSelected() {
             @Override
@@ -50,6 +53,9 @@ public class MainPartenaire extends javax.swing.JFrame {
                 } else if (index == 2) {
                     setForm(form2);
                 } else if (index == 3) {
+                    dispose();
+                    deposit.setVisible(true);
+                } else if (index == 4) {
                     JFrame frame = new JFrame("Deconnexion");
                     if (JOptionPane.showConfirmDialog(frame, "Êtes-vous sûr de vouloir vous déconnecter ?.", "Déconnecter",
                             JOptionPane.YES_NO_OPTION)==JOptionPane.YES_NO_OPTION)

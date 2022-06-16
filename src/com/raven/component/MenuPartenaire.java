@@ -43,6 +43,7 @@ public class MenuPartenaire extends javax.swing.JPanel {
         listMenu1.addItem(new Model_Menu("11", "Accueil", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("12", "Liste des oeuvres", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("13", "Dépôt", Model_Menu.MenuType.MENU));
+        listMenu1.addItem(new Model_Menu("13", "Demande de dépôt", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("15", "Se déconnecter", Model_Menu.MenuType.MENU));
         listMenu1.addItem(new Model_Menu("", " ", Model_Menu.MenuType.EMPTY));
 
