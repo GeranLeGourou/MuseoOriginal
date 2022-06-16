@@ -7,12 +7,16 @@ package com.raven.form;
 
 import com.raven.main.Main;
 import com.raven.main.AddOeuvre;
+import com.raven.back.Oeuvre;
+import com.raven.back.databaseRequests;
 import com.raven.dialog.Message;
 import com.raven.model.Model_Oeuvre;
 import com.raven.form.Form_addOeuvre;
 import com.raven.swing.table.EventActionOeuvre;
 import java.awt.Toolkit;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
@@ -49,18 +53,10 @@ public class Form_2 extends javax.swing.JPanel {
                 showMessage("Modifier un oeuvre : "+oeuvre.getTitre());
             }
         };
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/Figurine1.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/Figurine2.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/Bijoux1.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/Sculpture.jpg")), "Femme à 3 têtes", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
-        tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Figurine", "Pablo Picasso", "Figurine stylée", "Prêt").toRowTable(eventActionOeuvre));
+        ArrayList<Oeuvre> listOeuvre = databaseRequests.getAllOeuvres();
+        for (Oeuvre oeuvre : listOeuvre) {
+        	tableOeuvre1.addRow(new Model_Oeuvre(new ImageIcon(getClass().getResource(oeuvre.getLien())), oeuvre.getNom(), oeuvre.getArtiste(), oeuvre.getDescription(), oeuvre.getStatut()).toRowTable(eventActionOeuvre));
+        } 
     }
     
     /**

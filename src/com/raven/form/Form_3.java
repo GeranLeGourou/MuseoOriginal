@@ -5,9 +5,15 @@
  */
 package com.raven.form;
 import com.raven.main.Main;
+import com.raven.back.Admin;
+import com.raven.back.Oeuvre;
+import com.raven.back.databaseRequests;
 import com.raven.dialog.Message;
 import com.raven.model.Model_Admin;
 import com.raven.swing.table.EventAction;
+
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 /**
@@ -38,17 +44,10 @@ public class Form_3 extends javax.swing.JPanel {
                 showMessage("Modifier admin : "+admin.getPrenom());
             }
         };
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Francis", "ZHAO", "francis.zhao2000@gmail.com", "0612779621").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile1.jpg")), "Geran", "Cocagne", "gerancocagnepro@gmail.com", "0612345678").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile2.jpg")), "Amir", "KHALDI", "amirkhaldi17@gmail.com", "0656854563").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile3.jpg")), "Raphael", "NGUYENDANG", "raphaelnguyendang@gmail.com", "0658565859").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Francis", "ZHAO", "francis.zhao2000@gmail.com", "0612779621").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Francis", "ZHAO", "francis.zhao2000@gmail.com", "0612779621").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Francis", "ZHAO", "francis.zhao2000@gmail.com", "0612779621").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Francis", "ZHAO", "francis.zhao2000@gmail.com", "0612779621").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Francis", "ZHAO", "francis.zhao2000@gmail.com", "0612779621").toRowTable(eventAction));
-        table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource("/com/raven/icon/profile.jpg")), "Francis", "ZHAO", "francis.zhao2000@gmail.com", "0612779621").toRowTable(eventAction));
-        
+        ArrayList<Admin> listAdmin = databaseRequests.getAllAdmins();
+        for (Admin admin : listAdmin) {
+        	table1.addRow(new Model_Admin(new ImageIcon(getClass().getResource(admin.getLien())), admin.getPrenom(), admin.getNom(), admin.getMail(), admin.getNum()).toRowTable(eventAction));
+        }
         
     }   
     /**

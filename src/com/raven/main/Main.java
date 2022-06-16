@@ -16,6 +16,8 @@ import com.raven.form.Form_Home;
 import com.raven.login.Login;
 import com.raven.model.Model_Item;
 import java.awt.Color;
+import java.util.ArrayList;
+
 import javax.swing.JComponent;
 import com.raven.swing.ScrollBar;
 import com.raven.swing.icon.GoogleMaterialDesignIcons;
@@ -24,6 +26,8 @@ import java.awt.BorderLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+
+import com.raven.back.Oeuvre;
 import com.raven.back.databaseRequests;
 
 
