@@ -5,10 +5,13 @@
  */
 package com.raven.form;
 
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import com.raven.back.databaseRequests;
+
+
 
 /**
  *
@@ -81,6 +84,8 @@ public class Form_addAdmin extends javax.swing.JPanel {
 
         jLabel5.setText("Téléphone");
 
+
+
         jTextField1.setBackground(new java.awt.Color(117, 202, 240));
 
         jTextField2.setBackground(new java.awt.Color(117, 202, 240));
@@ -89,6 +94,7 @@ public class Form_addAdmin extends javax.swing.JPanel {
         button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setText("Valider");
         button1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+
         button1.addActionListener((ActionListener) new ActionListener() {
        	 public void actionPerformed(ActionEvent e)
        	  {
