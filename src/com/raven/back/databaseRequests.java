@@ -10,31 +10,12 @@ import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 
-<<<<<<< HEAD
 import javax.swing.JComboBox;
-=======
 import javax.swing.JFileChooser;
->>>>>>> 23f8d89dc6016b5b01a87d4fcc378b8bcf1ec1e7
 import javax.swing.JLabel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class databaseRequests extends javax.swing.JPanel {
-
-	public javax.swing.JComboBox<String> getjComboBox2() {
-		return jComboBox2;
-	}
-
-	public void setjComboBox2(javax.swing.JComboBox<String> jComboBox2) {
-		this.jComboBox2 = jComboBox2;
-	}
-
-	public javax.swing.JComboBox<String> getjComboBox3() {
-		return jComboBox3;
-	}
-
-	public void setjComboBox3(javax.swing.JComboBox<String> jComboBox3) {
-		this.jComboBox3 = jComboBox3;
-	}
 
 	public static boolean checkLogin(String username, String password) {
 
@@ -48,10 +29,10 @@ public class databaseRequests extends javax.swing.JPanel {
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				if (rs.getString("mail").equals(username) && decryptage(rs.getString("password")).equals(password)) {
-					System.out.print("Connexion réussie !");
+					System.out.print("Connexion rï¿½ussie !");
 					return true;
 				} else {
-					System.out.print("Connexion échouée, utilisateur ou mot de passe incorrect ! ");
+					System.out.print("Connexion ï¿½chouï¿½e, utilisateur ou mot de passe incorrect ! ");
 					return false;
 				}
 			}
@@ -114,7 +95,6 @@ public class databaseRequests extends javax.swing.JPanel {
 
 	public static String cryptage(String mdp) {
 		String mdpcrypt = "";
-<<<<<<< HEAD
 		char[] chars = mdp.toCharArray();
 		for (char c : chars) {
 			c += 5;
@@ -124,15 +104,6 @@ public class databaseRequests extends javax.swing.JPanel {
 		return mdpcrypt;
 	}
 
-=======
-        char[] chars = mdp.toCharArray();
-        for(char c : chars) {
-            c += 5;
-            mdpcrypt = mdpcrypt + c;
-            System.out.print(mdpcrypt);
-        }
-        return mdpcrypt;
-    }
 	
 	public static String decryptage(String mdp) {
 		String mdpcrypt = "";
@@ -144,7 +115,6 @@ public class databaseRequests extends javax.swing.JPanel {
         return mdpcrypt;
     }
 	
->>>>>>> 23f8d89dc6016b5b01a87d4fcc378b8bcf1ec1e7
 	public static boolean checkPhone(String tel) {
 		String regex = "^(?:(?:\\+|00)33[\\s.-]{0,3}(?:\\(0\\)[\\s.-]{0,3})?|0)[1-9](?:(?:[\\s.-]?\\d{2}){4}|\\d{2}(?:[\\s.-]?\\d{3}){2})$";
 		Pattern pattern = Pattern.compile(regex);
@@ -154,10 +124,9 @@ public class databaseRequests extends javax.swing.JPanel {
 
 	public static void addAdmin(String P, String N, String E, String T, String Passwd) {
 		try {
-<<<<<<< HEAD
 
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
 			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
 			String Prenom = P.toString();
 			String Nom = N.toString();
@@ -167,19 +136,7 @@ public class databaseRequests extends javax.swing.JPanel {
 
 			System.out.println(Passwd);
 			System.out.println(Password);
-=======
 			
-		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-		String mysqlUrl = "jdbc:mysql://localhost/museo";
-		Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
-		String Prenom = P.toString();
-		String Nom = N.toString();
-		String Email = E.toString();
-		String Telephone = T.toString();
-		String Password = cryptage(Passwd);
-		
-		System.out.println(Passwd);
-		System.out.println(Password);
 		
 		String regex = "^(.+)@(.+)$";
 
@@ -208,31 +165,6 @@ public class databaseRequests extends javax.swing.JPanel {
 		else {
 			System.out.println("aaaaaaa");
 		}
->>>>>>> 23f8d89dc6016b5b01a87d4fcc378b8bcf1ec1e7
-
-			String regex = "^(.+)@(.+)$";
-
-			String query = "INSERT INTO utilisateur VALUES (NULL, ?, ?, ?, ?, ?, ?, ?  ) ";
-			PreparedStatement pstmt = con.prepareStatement(query);
-
-			pstmt.setString(1, Nom);
-			pstmt.setString(2, Prenom);
-			pstmt.setString(3, Email);
-			pstmt.setString(4, Telephone);
-			pstmt.setString(5, Password);
-			pstmt.setInt(6, 1);
-			pstmt.setString(7, "Museo Lyon");
-
-			if (userExist(Email) == false && Email.matches(regex) == true) {
-				System.out.println("teeest");
-				if (checkPhone(Telephone) == true) {
-					int rs = pstmt.executeUpdate();
-				} else {
-					System.out.println("dddddzzzz");
-				}
-			} else {
-				System.out.println("aaaaaaa");
-			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -264,7 +196,7 @@ public class databaseRequests extends javax.swing.JPanel {
 	public static String getCategorie(String libe) {
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
 			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
 
 			String query = "SELECT id_categorie FROM categorie WHERE libelle = ?";
@@ -287,7 +219,7 @@ public class databaseRequests extends javax.swing.JPanel {
 		try {
 
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
 			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
 
 			String Titre = titre;
@@ -308,6 +240,8 @@ public class databaseRequests extends javax.swing.JPanel {
 			String temp1 = categorie.toString();
 			System.out.print(temp1);
 			String Categorie = getCategorie(temp1);
+			String fileName = addImage();
+			String lien = "/com/raven/icon/" + fileName;
 
 			/*
 			 * String queryCateg = "SELECT id_categorie FROM categorie WHERE libelle = ?";
@@ -330,7 +264,7 @@ public class databaseRequests extends javax.swing.JPanel {
 			pstmt.setString(8, Statut);
 			pstmt.setString(9, Collection);
 			pstmt.setString(10, Categorie);
-			pstmt.setString(11, "/com/raven/icon/bijoux1.jpg"); 
+			pstmt.setString(11, lien); 
 
 			System.out.println(pstmt);
 			int rs = pstmt.executeUpdate();
@@ -414,7 +348,8 @@ public class databaseRequests extends javax.swing.JPanel {
 		return listAdmin;
 	}
 	
-	public static void addImage() {
+	public static String addImage() {
+		String name = "";
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG & GIF Images", "jpg", "gif");
@@ -422,16 +357,18 @@ public class databaseRequests extends javax.swing.JPanel {
         int returnVal = chooser.showOpenDialog(null);
         if(returnVal == JFileChooser.APPROVE_OPTION) {
             File selectedFile = chooser.getSelectedFile();
-            System.out.println("You chose to copy this file: " +
-                selectedFile.getName());
+            name = selectedFile.getName();
 
             Path newPath = Paths.get("./src/com/raven/icon", selectedFile.getName());
             try {
                 Files.copy(selectedFile.toPath(), newPath);
+                return name;
+   
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
+        return name;
     }
 	
 	public static void deleteOeuvre(String name) {

@@ -99,7 +99,7 @@ public class Form_addOeuvre extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTextArea2);
 
         jComboBox1.setBackground(new java.awt.Color(117, 202, 240));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prêt", "Acquise", "Restauration", "Dépôt" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Prï¿½t", "Acquise", "Restauration", "Dï¿½pï¿½t" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -132,7 +132,7 @@ public class Form_addOeuvre extends javax.swing.JPanel {
 
         jComboBox2.setBackground(new java.awt.Color(117, 202, 240));
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Museo Lyon", "Musée de Vernon", "Musée d'Orsay", "Prado", "Figueras", "Quai Branly", "Le Louvre" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Museo Lyon", "Musï¿½e de Vernon", "Musï¿½e d'Orsay", "Prado", "Figueras", "Quai Branly", "Le Louvre" }));
 
         jComboBox2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,7 +141,7 @@ public class Form_addOeuvre extends javax.swing.JPanel {
         });
 
 
-        lbCategorie.setText("Catégorie");
+        lbCategorie.setText("CatÃ©gorie");
 
 
         jComboBox3.setBackground(new java.awt.Color(117, 202, 240));

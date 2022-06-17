@@ -27,7 +27,7 @@ public class Form_Home extends javax.swing.JPanel {
         String nbArtiste = Integer.toString(databaseRequests.countArtiste());
         card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres d'oeuvres", nbOeuvre, "Les oeuvres"));
         card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres d'artistes", nbArtiste, "Les artistes"));
-        card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres catégories", nbCategorie, "Les catégories"));
+        card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres catÃ©gories", nbCategorie, "Les catÃ©gories"));
     }
 
     /** This method is called from within the constructor to

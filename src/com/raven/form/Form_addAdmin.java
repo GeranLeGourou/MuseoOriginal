@@ -76,13 +76,13 @@ public class Form_addAdmin extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setText("Prénom");
+        jLabel2.setText("PrÃ©nom");
 
         jLabel3.setText("Nom");
 
         jLabel4.setText("Email");
 
-        jLabel5.setText("Téléphone");
+        jLabel5.setText("TÃ©lÃ©phone");
 
 
 
