@@ -2,12 +2,21 @@ package com.raven.back;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.*;
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 import javax.swing.JComboBox;
+=======
+import javax.swing.JFileChooser;
+>>>>>>> 23f8d89dc6016b5b01a87d4fcc378b8bcf1ec1e7
 import javax.swing.JLabel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class databaseRequests extends javax.swing.JPanel {
 
@@ -38,7 +47,7 @@ public class databaseRequests extends javax.swing.JPanel {
 			pstmt.setString(1, username);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				if (rs.getString("mail").equals(username) && rs.getString("password").equals(password)) {
+				if (rs.getString("mail").equals(username) && decryptage(rs.getString("password")).equals(password)) {
 					System.out.print("Connexion réussie !");
 					return true;
 				} else {
@@ -78,7 +87,7 @@ public class databaseRequests extends javax.swing.JPanel {
 	public static boolean userExist(String Mail) {
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
 			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
 
 			String query = "SELECT prenom FROM utilisateur WHERE prenom = ?";
@@ -105,6 +114,7 @@ public class databaseRequests extends javax.swing.JPanel {
 
 	public static String cryptage(String mdp) {
 		String mdpcrypt = "";
+<<<<<<< HEAD
 		char[] chars = mdp.toCharArray();
 		for (char c : chars) {
 			c += 5;
@@ -114,6 +124,27 @@ public class databaseRequests extends javax.swing.JPanel {
 		return mdpcrypt;
 	}
 
+=======
+        char[] chars = mdp.toCharArray();
+        for(char c : chars) {
+            c += 5;
+            mdpcrypt = mdpcrypt + c;
+            System.out.print(mdpcrypt);
+        }
+        return mdpcrypt;
+    }
+	
+	public static String decryptage(String mdp) {
+		String mdpcrypt = "";
+        char[] chars = mdp.toCharArray();
+        for(char c : chars) {
+            c -= 5;
+            mdpcrypt = mdpcrypt + c;
+        }
+        return mdpcrypt;
+    }
+	
+>>>>>>> 23f8d89dc6016b5b01a87d4fcc378b8bcf1ec1e7
 	public static boolean checkPhone(String tel) {
 		String regex = "^(?:(?:\\+|00)33[\\s.-]{0,3}(?:\\(0\\)[\\s.-]{0,3})?|0)[1-9](?:(?:[\\s.-]?\\d{2}){4}|\\d{2}(?:[\\s.-]?\\d{3}){2})$";
 		Pattern pattern = Pattern.compile(regex);
@@ -123,6 +154,7 @@ public class databaseRequests extends javax.swing.JPanel {
 
 	public static void addAdmin(String P, String N, String E, String T, String Passwd) {
 		try {
+<<<<<<< HEAD
 
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
 			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
@@ -135,6 +167,48 @@ public class databaseRequests extends javax.swing.JPanel {
 
 			System.out.println(Passwd);
 			System.out.println(Password);
+=======
+			
+		DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+		String mysqlUrl = "jdbc:mysql://localhost/museo";
+		Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+		String Prenom = P.toString();
+		String Nom = N.toString();
+		String Email = E.toString();
+		String Telephone = T.toString();
+		String Password = cryptage(Passwd);
+		
+		System.out.println(Passwd);
+		System.out.println(Password);
+		
+		String regex = "^(.+)@(.+)$";
+
+		
+		String query = "INSERT INTO utilisateur VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?  ) "; 
+		PreparedStatement pstmt = con.prepareStatement(query);
+
+		pstmt.setString(1, Nom );
+		pstmt.setString(2, Prenom);
+		pstmt.setString(3, Email);
+		pstmt.setString(4, Telephone);
+		pstmt.setString(5, Password);
+		pstmt.setInt(6, 1);
+		pstmt.setString(7, "Museo Lyon");
+		pstmt.setString(8, "/com/raven/icon/Profile.jpg");
+		
+		if (userExist(Email) == false && Email.matches(regex) == true ) {
+			System.out.println("teeest");
+			if (checkPhone(Telephone) == true){
+				int rs = pstmt.executeUpdate();
+			}
+			else {
+				System.out.println("dddddzzzz");
+			}
+		}
+		else {
+			System.out.println("aaaaaaa");
+		}
+>>>>>>> 23f8d89dc6016b5b01a87d4fcc378b8bcf1ec1e7
 
 			String regex = "^(.+)@(.+)$";
 
@@ -169,7 +243,7 @@ public class databaseRequests extends javax.swing.JPanel {
 	public static String getCollection(String libelle) {
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
 			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
 
 			String query = "SELECT id_collection FROM collections WHERE libelle = ?";
@@ -269,7 +343,7 @@ public class databaseRequests extends javax.swing.JPanel {
 	public static boolean checkAdminExist(String username) {
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
 			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
 			String query = "SELECT admin FROM utilisateur WHERE mail = ?";
 			PreparedStatement pstmt = con.prepareStatement(query);
@@ -293,7 +367,7 @@ public class databaseRequests extends javax.swing.JPanel {
 		ArrayList<Oeuvre> listOeuvre = new ArrayList<Oeuvre>();
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
 			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
 			String query = "SELECT * FROM oeuvre";
 			PreparedStatement pstmt = con.prepareStatement(query);
@@ -319,7 +393,7 @@ public class databaseRequests extends javax.swing.JPanel {
 		ArrayList<Admin> listAdmin = new ArrayList<Admin>();
 		try {
 			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
-			String mysqlUrl = "jdbc:mysql://localhost/museo_2";
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
 			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
 			String query = "SELECT * FROM utilisateur WHERE admin = 1";
 			PreparedStatement pstmt = con.prepareStatement(query);
@@ -338,6 +412,119 @@ public class databaseRequests extends javax.swing.JPanel {
 			e.printStackTrace();
 		}
 		return listAdmin;
+	}
+	
+	public static void addImage() {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & GIF Images", "jpg", "gif");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(null);
+        if(returnVal == JFileChooser.APPROVE_OPTION) {
+            File selectedFile = chooser.getSelectedFile();
+            System.out.println("You chose to copy this file: " +
+                selectedFile.getName());
 
+            Path newPath = Paths.get("./src/com/raven/icon", selectedFile.getName());
+            try {
+                Files.copy(selectedFile.toPath(), newPath);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+	
+	public static void deleteOeuvre(String name) {
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
+			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+			
+			String query = "DELETE FROM oeuvre WHERE nom = ?"; 
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, name );
+			pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
+	public static void deleteAdmin(String mail) {
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
+			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+			
+			String query = "DELETE FROM utilisateur WHERE mail = ?"; 
+			PreparedStatement pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mail );
+			pstmt.executeUpdate();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+	}
+	
+	public static int countOeuvre() {
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
+			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+			
+			String query = "SELECT COUNT(id_oeuvre) FROM oeuvre"; 
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				return rs.getInt("COUNT(id_oeuvre)");
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return 0;
+	}
+	
+	public static int countCategorie() {
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
+			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+			
+			String query = "SELECT COUNT(id_categorie) FROM categorie"; 
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				return rs.getInt("COUNT(id_categorie)");
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return 0;
+	}
+	
+	public static int countArtiste() {
+		try {
+			DriverManager.registerDriver(new com.mysql.cj.jdbc.Driver());
+			String mysqlUrl = "jdbc:mysql://localhost/museo";
+			Connection con = DriverManager.getConnection(mysqlUrl, "root", "");
+			
+			String query = "SELECT COUNT( DISTINCT artiste) as artistes FROM oeuvre;"; 
+			PreparedStatement pstmt = con.prepareStatement(query);
+			ResultSet rs = pstmt.executeQuery();
+			while (rs.next()) {
+				return rs.getInt("artistes");
+			}
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			
+		}
+		return 0;
 	}
 }

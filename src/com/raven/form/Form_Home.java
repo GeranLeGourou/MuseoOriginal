@@ -6,6 +6,7 @@
 
 package com.raven.form;
 
+import com.raven.back.databaseRequests;
 import com.raven.model.Model_Card;
 import com.raven.swing.ScrollBar;
 import java.awt.Color;
@@ -21,9 +22,12 @@ public class Form_Home extends javax.swing.JPanel {
     /** Creates new form Form_Home */
     public Form_Home() {
         initComponents();
-        card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres d'oeuvres", "15", "Les oeuvres"));
-        card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres d'artistes", "20", "Les artistes"));
-        card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres catÃ©gories", "7", "Les catÃ©gories"));
+        String nbOeuvre = Integer.toString(databaseRequests.countOeuvre());
+        String nbCategorie= Integer.toString(databaseRequests.countCategorie());
+        String nbArtiste = Integer.toString(databaseRequests.countArtiste());
+        card1.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres d'oeuvres", nbOeuvre, "Les oeuvres"));
+        card2.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres d'artistes", nbArtiste, "Les artistes"));
+        card3.setData(new Model_Card(new ImageIcon(getClass().getResource("/com/raven/icon/stock.png")), "Nombres catégories", nbCategorie, "Les catégories"));
     }
 
     /** This method is called from within the constructor to
@@ -40,9 +44,6 @@ public class Form_Home extends javax.swing.JPanel {
         card2 = new com.raven.component.Card();
         card3 = new com.raven.component.Card();
         panel1 = new javax.swing.JLayeredPane();
-        card4 = new com.raven.component.Card();
-        card5 = new com.raven.component.Card();
-        card6 = new com.raven.component.Card();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -64,17 +65,6 @@ public class Form_Home extends javax.swing.JPanel {
 
         panel1.setLayout(new java.awt.GridLayout(1, 0, 10, 0));
 
-        card4.setColor1(new java.awt.Color(37, 157, 209));
-        card4.setColor2(new java.awt.Color(96, 138, 192));
-        panel1.add(card4);
-
-        card5.setColor1(new java.awt.Color(37, 157, 209));
-        card5.setColor2(new java.awt.Color(96, 138, 192));
-        panel1.add(card5);
-
-        card6.setColor1(new java.awt.Color(37, 157, 209));
-        card6.setColor2(new java.awt.Color(96, 138, 192));
-        panel1.add(card6);
 
         jPanel1.setBackground(new java.awt.Color(117, 202, 240));
 
@@ -126,9 +116,6 @@ public class Form_Home extends javax.swing.JPanel {
     private com.raven.component.Card card1;
     private com.raven.component.Card card2;
     private com.raven.component.Card card3;
-    private com.raven.component.Card card4;
-    private com.raven.component.Card card5;
-    private com.raven.component.Card card6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLayeredPane panel;

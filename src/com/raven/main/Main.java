@@ -48,7 +48,6 @@ public class Main extends javax.swing.JFrame {
     private AddOeuvre addOeuvre;
     private AddAdmin addAdmin;
     public Main() {
-    	System.out.println("AAAAAAAAAAAAAAAA");
 
         initComponents();
         setBackground(new Color(0, 0, 0, 0));
@@ -64,7 +63,7 @@ public class Main extends javax.swing.JFrame {
             public void selected(int index) {
                 if (index == 0) {
                     setForm(home);
-                } else if (index == 1) {
+                } else if (index == 1) {	
                     dispose();
                     oeuvres.setVisible(true);
                 } else if (index == 2) {
