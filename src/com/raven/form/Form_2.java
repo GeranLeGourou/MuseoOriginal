@@ -46,6 +46,7 @@ public class Form_2 extends javax.swing.JPanel {
             @Override
             public void deleteOeuvre(Model_Oeuvre oeuvre) {
                 showMessage("Supprimer un oeuvre : "+oeuvre.getTitre());
+                databaseRequests.deleteOeuvre(oeuvre.getTitre());
             }
 
             @Override

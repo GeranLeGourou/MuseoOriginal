@@ -35,8 +35,8 @@ public class Form_3 extends javax.swing.JPanel {
         EventAction eventAction = new EventAction() {
             @Override
             public void delete(Model_Admin admin) {
-                showMessage("Êtes-vous sûr de vouloir supprimer l’admin ? : \n"+admin.getPrenom());
-
+                showMessage("Êtes-vous sûr de vouloir supprimer l'admin ? : "+admin.getPrenom());
+                databaseRequests.deleteAdmin(admin.getEmail());
             }
 
             @Override
