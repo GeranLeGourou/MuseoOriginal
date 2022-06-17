@@ -5,6 +5,10 @@
  */
 package com.raven.form;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import com.raven.back.databaseRequests;
 
 /**
  *
@@ -105,7 +109,14 @@ public class Form_addOeuvre extends javax.swing.JPanel {
         button1.setBackground(new java.awt.Color(86, 204, 144));
         button1.setForeground(new java.awt.Color(255, 255, 255));
         button1.setText("Valider");
-        button1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        button1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        button1.addActionListener((ActionListener) new ActionListener() {
+          	 public void actionPerformed(ActionEvent e)
+          	  {
+          		 
+          		 databaseRequests.addOeuvre(jTextField1.getText(), jTextField2.getText(), "type" , "num" , jTextArea2.getText(), jTextArea3.getText(), 0 ,jComboBox1.getSelectedItem(), jComboBox2.getSelectedItem(), jComboBox3.getSelectedItem()  ) ;
+          	  }
+          	});
 
         button2.setBackground(new java.awt.Color(255, 120, 81));
         button2.setForeground(new java.awt.Color(255, 255, 255));
